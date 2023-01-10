@@ -1,0 +1,61 @@
+﻿@model Mess_Management_System.ViewModels.DailyMealViewModel
+
+
+<div class="px-lg-5 border rounded-2 mx-lg-5 my-lg-5 small">
+    <form class="row g-3 pb-3 px-lg-5 mx-lg-5 my-lg-2" method="post">
+        <div>
+            <h2 class="text-primary fs-4">Update Meal</h2>
+            <hr />
+        </div>
+
+        <div>
+            <label asp-for="MealId"></label>
+            <input asp-for="MealId" class="form-control" />
+            <span asp-validation-for="MealId" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="MemberName"></label>
+            <select name="MemberId" class="form-control" asp-items="@ViewBag.memberlist">
+                <option>
+                    Select Member
+                </option>
+            </select>
+            <span asp-validation-for="MemberId" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="Breakfast"></label>
+            <input asp-for="Breakfast" class="form-control" />
+            <span asp-validation-for="Breakfast" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="Lunch"></label>
+            <input asp-for="Lunch" class="form-control" />
+            <span asp-validation-for="Lunch" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="Dinner"></label>
+            <input asp-for="Dinner" class="form-control" />
+            <span asp-validation-for="Dinner" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="Date"></label>
+            <input asp-for="Date" type="date" class="form-control" />
+            <span asp-validation-for="Date" class="text-danger"></span>
+        </div>
+        <div class="d-flex justify-content-between">
+            <a asp-controller="DailyMeal" asp-action="Index" class="btn btn-secondary" style="width:150px">
+                Go back
+            </a>
+            <button type="submit" class="btn btn-primary" style="width:150px">Update</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    @{
+    <partial name="_ValidationScriptsPartial" />
+    }
+}
+
+
+

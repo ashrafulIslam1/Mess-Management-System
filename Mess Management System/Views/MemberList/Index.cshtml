@@ -1,0 +1,94 @@
+﻿@model List<Mess_Management_System.ViewModels.MemberListViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container p-3">
+    <div class="row pt-4 ">
+        <div class="d-flex justify-content-end shadow-sm p-3 pt-1 pb-0 mb-4 bg-body rounded">
+            <div class="col-6">
+                <p class="fs-4 fw-semibold text-primary">Member List</p>
+            </div>
+            <form asp-action="Index" method="get">
+                <div class="d-flex form-actions no-color">
+                    <div class="me-2">
+                        <input type="text" name="SearchString" value="@ViewData["currentFilter"]" placeholder="Search Name" class="btn btn-outline-secondary btn-sm"/>
+                    </div>
+                    <div class ="d-flex me-3">
+                        <div class="ms-2">
+                            <input type="submit" value="Search" class="btn btn-dark btn-sm" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+ 
+
+                <div>
+                    <a asp-controller="MemberList" asp-action="Create" class="btn btn-primary btn-sm">
+                        <i class="bi bi-plus-circle-fill"></i> &nbsp;New
+                    </a>
+                </div>
+        </div>
+    </div>
+
+    <table class="table table-borderd table-striped shadow-sm">
+        <thead>
+            <tr class="small text-center">
+                <th>
+                    ID
+                </th>
+                <th>
+                    Name @*<a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]"><i class="bi bi-arrow-up"></i></a>*@
+                </th>
+                <th>
+                    Present Address
+                </th>
+                <th>
+                    Permanent Address
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Mobile
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="small text-center">
+                    <td width="10%">
+                        @item.MemberId
+                    </td>
+                    <td width="22%">
+                        @item.Name
+                    </td>
+                    <td width="18%">
+                        @item.CurrentAddress
+                    </td>
+                    <td width="18%">
+                        @item.PermanentAddress
+                    </td>
+                    <td width="10%">
+                        @item.Email
+                    </td>
+                    <td width="10%">
+                        @item.Contact
+                    </td>
+                    <td>
+                        <div class="btn-group mb-0" role="group">
+                         <a asp-controller="MemberList" asp-action="Update" asp-route-id="@item.MemberId" class="btn  btn-primary rounded-1 btn-sm"> <i class="bi bi-pencil-square"></i></a>
+                         @*<a asp-controller="MemberList" asp-action="Delete" asp-route-id="@item.MemberId" class="btn btn-danger mx-1 rounded-1 btn-sm"> <i class="bi bi-trash3-fill"></i></a>*@
+                     </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

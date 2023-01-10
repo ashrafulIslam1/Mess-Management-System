@@ -1,0 +1,76 @@
+﻿@model Mess_Management_System.ViewModels.MonthlyBazarSetupViewModel;
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="px-lg-5 border rounded-2 mx-lg-5 my-lg-5 small">
+    
+    <form method="post" class="row g-3 pb-3 px-lg-5 mx-lg-5 my-lg-2">
+        <div>
+            <h2 class="text-primary fs-4">Add Monthly Staffs</h2>
+            <hr />
+        </div>
+        <div class="col-md-3">
+            <label asp-for="HouseRent"></label>
+            <input asp-for="HouseRent" class="form-control" />
+            <span asp-validation-for="HouseRent" class="text-danger"></span>
+        </div>
+        <div class="col-md-6">
+            <label asp-for="GassBill"></label>
+            <input asp-for="GassBill" class="form-control" />
+            <span asp-validation-for="GassBill" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-6">
+            <label asp-for="BuaBill"></label>
+            <input asp-for="BuaBill" class="form-control" />
+            <span asp-validation-for="BuaBill" class="text-danger"></span>
+        </div>
+        <div class="col-md-6">
+            <label asp-for="ElectricityBill"></label>
+            <input asp-for="ElectricityBill" class="form-control" />
+            <span asp-validation-for="ElectricityBill" class="text-danger"></span>
+        </div>
+        <div class="col-md-6">
+            <label asp-for="InternetBill"></label>
+            <input asp-for="InternetBill" class="form-control" />
+            <span asp-validation-for="InternetBill" class="text-danger"></span>
+        </div>
+        <div class="col-md-6">
+            <label asp-for="WaterBill"></label>
+            <input asp-for="WaterBill" class="form-control" />
+            <span asp-validation-for="WaterBill" class="text-danger"></span>
+        </div>
+        <div class="col-md-6">
+            <label asp-for="DirtCost"></label>
+            <input asp-for="DirtCost" class="form-control" />
+            <span asp-validation-for="DirtCost" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-6">
+            <label asp-for="Month"></label>
+            <input asp-for="Month" class="form-control" />
+            <span asp-validation-for="Month" class="text-danger"></span>
+        </div>
+        <div class="col-md-6">
+            <label asp-for="Year"></label>
+            <input asp-for="Year" class="form-control" />
+            <span asp-validation-for="Year" class="text-danger"></span>
+        </div>
+        <div class="d-flex mt-4 justify-content-between">
+            <a asp-controller="MonthlyBazarSetup" asp-action="Index" class="btn btn-secondary" style="width:150px">
+                Go back
+            </a>
+        <button type="submit" class="btn btn-primary" style="width:150px">Add Staff</button>
+        </div>
+    </form>
+</div>
+
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+

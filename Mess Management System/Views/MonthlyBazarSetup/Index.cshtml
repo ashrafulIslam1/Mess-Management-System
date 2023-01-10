@@ -1,0 +1,120 @@
+﻿@model List<Mess_Management_System.ViewModels.MonthlyBazarSetupViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container p-3">
+    <div class="row pt-4 ">
+        <div class="d-flex justify-content-end shadow-sm p-3 pt-1 pb-0 mb-4 bg-body rounded">
+            <div class="col-6">
+                <p class="fs-4 fw-semibold text-primary">Monthly Staff Setup</p>
+            </div>
+            <form asp-action="Index" method="get">
+                <div class="d-flex form-actions no-color">
+                    <div class="me-2">
+                                <input type="month" name="MonthYear" class="btn btn-outline-secondary btn-sm" />
+                            </div>
+                    <div class ="d-flex me-3">
+                        <div class="ms-2">
+                            <input type="submit" value="Search" class="btn btn-dark btn-sm" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div>
+                 <a asp-controller="MonthlyBazarSetup" asp-action="Create" class="btn btn-primary btn-sm">
+                      <i class="bi bi-plus-circle-fill"></i> &nbsp;Add Staff
+                 </a>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-borderd table-striped shadow-sm">
+        <thead>
+            <tr class="small text-center">
+                <th>
+                    ID
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    House Rent
+                </th>
+                <th>
+                    Gass Bill
+                </th>
+                <th>
+                    Bua Bill
+                </th>
+                <th>
+                    Electricity Bill
+                </th>
+                <th>
+                    Internet Bill
+                </th>
+                <th>
+                    Dirt Bill
+                </th>
+                <th>
+                    Water Bill
+                </th>
+                <th>
+                    Month
+                </th>
+                <th>
+                    Year
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="small text-center">
+                    <td width="22%">
+                        @item.Id
+                    </td>
+                    <td width="10%">
+                        @item.HouseRent
+                    </td>
+                    <td width="10%">
+                        @item.GassBill
+                    </td>
+                    <td width="10%">
+                        @item.BuaBill
+                    </td>
+                    <td width="10%">
+                        @item.ElectricityBill
+                    </td>
+                    <td width="10%">
+                        @item.InternetBill
+                    </td>
+                    <td width="10%">
+                        @item.DirtCost
+                    </td>
+                    <td width="10%">
+                        @item.WaterBill
+                    </td>
+                     <td width="10%">
+                        @item.Month
+                    </td>
+                    <td width="10%">
+                        @item.Year
+                    </td>
+                    <td>
+                        <div class="btn-group mb-0" role="group">
+                         <a asp-controller="MonthlyBazarSetup" asp-action="Update" asp-route-id="@item.Id" class="btn  btn-primary rounded-1 btn-sm"> <i class="bi bi-pencil-square"></i></a>
+                     </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
