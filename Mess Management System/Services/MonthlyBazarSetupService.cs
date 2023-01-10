@@ -59,6 +59,7 @@ namespace Mess_Management_System.Services
             var query = (from s in _dbContext.MonthlyBazarSetups
                          select new MonthlyBazarSetupViewModel
                          {
+                             Id = s.Id,
                              HouseRent = s.HouseRent,
                              GassBill = s.GassBill,
                              BuaBill = s.BuaBill,
@@ -79,6 +80,7 @@ namespace Mess_Management_System.Services
                          where s.Id == id
                          select new MonthlyBazarSetupViewModel
                          {
+                             Id = s.Id,
                              HouseRent = s.HouseRent,
                              GassBill = s.GassBill,
                              BuaBill = s.BuaBill,
