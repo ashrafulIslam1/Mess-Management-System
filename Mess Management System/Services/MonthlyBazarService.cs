@@ -15,6 +15,12 @@ namespace Mess_Management_System.Services
 
         public void Generate(MonthlyBazarViewModel vm)
         {
+            var existingMonthlyBill = _dbContext.MonthlyBazars.Where(x => x.Month == vm.Month && x.Year == vm.Year).ToList();
+            if (existingMonthlyBill.Count > 0)
+            {
+                _dbContext.MonthlyBazars.RemoveRange(existingMonthlyBill);
+            }
+
             var member = _dbContext.Members.ToList();
 
             var individualMeal = (from s in _dbContext.DailyMeals
@@ -43,6 +49,7 @@ namespace Mess_Management_System.Services
             double totalBazars = bazar.Sum(x => x.Bazar);            
 
             var data = (from e in member
+                        from mb in _dbContext.MonthlyBazarSetups where mb.Month == vm.Month && mb.Year == vm.Year
                         join a in individualMeal on e.MemberId equals a.MemberId
                         join b in bazar on e.MemberId equals b.MemberId
                         select new
@@ -53,6 +60,14 @@ namespace Mess_Management_System.Services
                             Dinner = a.Dinner,
                             personTotalMeal = a.TotalMeal,
                             personTotalBazar = b.Bazar,
+                            GassBill = mb.GassBill / member.Count,
+                            BuaBill = mb.BuaBill / member.Count,
+                            ElectricityBill = mb.ElectricityBill / member.Count,
+                            HouseRent = mb.HouseRent / member.Count,
+                            DirtCost = mb.DirtCost / member.Count,
+                            WaterBill = mb.WaterBill / member.Count,
+                            InternetBill = mb.InternetBill / member.Count,
+                            foodCost = (totalBazars / totameal) * a.TotalMeal,
                         }).ToList();
 
             foreach(var item in data)
@@ -62,20 +77,22 @@ namespace Mess_Management_System.Services
                     MemberId = item.MemberId,
                     Year = vm.Year,
                     Month = vm.Month,
-                    GassBill = vm.GassBill / member.Count,
-                    BuaBill = vm.BuaBill / member.Count,
-                    ElectricityBill = vm.ElectricityBill / member.Count,
-                    HouseRent = vm.HouseRent / member.Count,
-                    DirtCost = vm.DirtCost / member.Count,
-                    WaterBill = vm.WaterBill / member.Count,
-                    InternetBill = vm.InternetBill / member.Count,
-                    TotalBazarCost = item.personTotalBazar,
+                    GassBill = Math.Round(item.GassBill, 2),
+                    BuaBill = Math.Round(item.BuaBill, 2),
+                    ElectricityBill = Math.Round(item.ElectricityBill, 2),
+                    HouseRent = Math.Round(item.HouseRent, 2),
+                    DirtCost = Math.Round(item.DirtCost, 2),
+                    WaterBill = Math.Round(item.WaterBill, 2),
+                    InternetBill = Math.Round(item.InternetBill, 2),
+                    TotalBazarCost = Math.Round(item.personTotalBazar, 2),
                     TotalMeal = item.personTotalMeal,
-                    FoodCost = (totalBazars / totameal) * item.personTotalMeal,
+                    FoodCost = Math.Round(item.foodCost, 2),
                     PersonalLoan = 0,
                     PerviousDue = 0,
-                    TotalCost = 0,
-                    TotalPayableCost = 0,
+                    TotalCost = Math.Round((item.GassBill + item.BuaBill + item.ElectricityBill + item.HouseRent + item.DirtCost + item.WaterBill + item.InternetBill
+                    + item.foodCost), 2),
+                    TotalPayableCost = Math.Round((item.GassBill + item.BuaBill + item.ElectricityBill + item.HouseRent + item.DirtCost + item.WaterBill + item.InternetBill
+                    + item.foodCost) - item.personTotalBazar, 2),
                 });
             }
             _dbContext.SaveChanges();
@@ -96,6 +113,7 @@ namespace Mess_Management_System.Services
                              DirtCost = b.DirtCost,
                              WaterBill = b.WaterBill,
                              InternetBill = b.InternetBill,
+                             TotalMeal = b.TotalMeal,
                              TotalBazarCost = b.TotalBazarCost,
                              TotalCost = b.TotalCost,
                              TotalPayableCost = b.TotalPayableCost,

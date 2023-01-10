@@ -12,12 +12,12 @@ namespace Mess_Management_System.ViewModels
         public int MemberId { get; set; }
         [Display(Name = "Member Name")]
         public string? MemberName { get; set; }
-        [Range(0,10,ErrorMessage ="value not less than 0 or grater than 10")]
+        //[Range(0,10,ErrorMessage ="value not less than 0 or grater than 10")]
         //[Range(0,int.MaxValue,ErrorMessage = "value not less than 0")]
         public int Breakfast { get; set; }
-        [Range(0, 10, ErrorMessage = "value not less than 0 or grater than 10")]
+        //[Range(0, 10, ErrorMessage = "value not less than 0 or grater than 10")]
         public int Lunch { get; set; }
-        [Range(0, 10, ErrorMessage = "value not less than 0 or grater than 10")]
+        //[Range(0, 10, ErrorMessage = "value not less than 0 or grater than 10")]
         public int Dinner { get; set; }
         //[CurrentDate]
         public DateTime Date { get; set; }

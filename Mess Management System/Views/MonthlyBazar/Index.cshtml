@@ -63,7 +63,13 @@
                     Water Bill
                 </th>
                 <th>
+                    Total Meal
+                </th>
+                <th>
                     Food Cost
+                </th>
+                <th>
+                    Bazar Cost
                 </th>
                 <th>
                     Total Cost
@@ -87,43 +93,91 @@
             @foreach (var item in Model)
             {
                 <tr class="small text-center">
-                    <td width="22%">
+                    <td width="15%">
                         @item.Name
                     </td>
-                    <td width="10%">
-                        @item.HouseRent
+                    <td width="8%">
+                        @item.HouseRent Tk
                     </td>
-                    <td width="10%">
-                        @item.GassBill
+                    <td width="8%">
+                        @item.GassBill Tk
                     </td>
-                    <td width="10%">
-                        @item.BuaBill
+                    <td width="8%">
+                        @item.BuaBill Tk
                     </td>
-                    <td width="10%">
-                        @item.ElectricityBill
+                    <td width="8%">
+                        @item.ElectricityBill Tk
                     </td>
-                    <td width="10%">
-                        @item.InternetBill
+                    <td width="8%">
+                        @item.InternetBill Tk
                     </td>
-                    <td width="10%">
-                        @item.DirtCost
+                    <td width="8%">
+                        @item.DirtCost Tk
                     </td>
-                    <td width="10%">
-                        @item.WaterBill
+                    <td width="8%">
+                        @item.WaterBill Tk
                     </td>
-                    <td width="10%">
-                        @item.FoodCost
+                    <td width="8%">
+                        @item.TotalMeal
                     </td>
-                    <td width="10%">
-                        @item.TotalCost
+                    <td width="8%">
+                        @item.FoodCost Tk
                     </td>
-                    <td width="10%">
-                        @item.TotalPayableCost
+                     <td width="8%">
+                        @item.TotalBazarCost Tk
                     </td>
-                     <td width="10%">
-                        @item.Month
+                    <td width="8%">
+                        @item.TotalCost Tk
                     </td>
-                    <td width="10%">
+                    <td width="8%">
+                        @item.TotalPayableCost Tk
+                    </td>
+                     <td width="5%">
+                        @switch (@item.Month)
+                        {
+                            case 1:
+                                <div>Januray</div>
+                                break;
+                            case 2:
+                                <div>February</div>
+                                break;
+                            case 3:
+                                <div>March</div>
+                                break;
+                            case 4:
+                                <div>April</div>
+                                break;
+                            case 5:
+                                <div>May</div>
+                                break;
+                            case 6:
+                                <div>June</div>
+                                break;
+                            case 7:
+                                <div>July</div>
+                                break;
+                            case 8:
+                                <div>August</div>
+                                break;
+                            case 9:
+                                <div>September</div>
+                                break;
+                            case 10:
+                                <div>October</div>
+                                break;
+                            case 11:
+                                <div>November</div>
+                                break;
+                            case 12:
+                                <div>December</div>
+                                break;
+
+                            default:
+                                <div>Wrong</div>
+                                break;
+                        }
+                    </td>
+                    <td width="5%">
                         @item.Year
                     </td>
                     <td>
