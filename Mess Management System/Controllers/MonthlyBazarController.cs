@@ -14,10 +14,13 @@ namespace Mess_Management_System.Controllers
             _memberService = memberListService;
             _monthlyBazarService = monthlyBazarService;
         }
-        public IActionResult Index()
+        public IActionResult Index(string? searchString, DateTime? monthYear)
         {
+            int? _month = monthYear == null ? null : monthYear.Value.Month;
+            int? _year = monthYear == null ? null : monthYear.Value.Year;
+
             ViewBag.memberlist = new SelectList(_memberService.GetDropDown(), "Value", "Text");
-            var query = _monthlyBazarService.GetAll();
+            var query = _monthlyBazarService.GetAll(searchString, _month, _year);
             
             return View(query);
         }

@@ -54,7 +54,7 @@ namespace Mess_Management_System.Services
             _dbContext.SaveChanges();
         }
 
-        public List<MonthlyBazarSetupViewModel> GetAll()
+        public List<MonthlyBazarSetupViewModel> GetAll(int? _month, int? _year)
         {
             var query = (from s in _dbContext.MonthlyBazarSetups
                          select new MonthlyBazarSetupViewModel
@@ -70,6 +70,11 @@ namespace Mess_Management_System.Services
                              Month = s.Month,
                              Year = s.Year,
                          }).AsQueryable();
+
+            if(_month != null && _year != null)
+            {
+                query = query.Where(x => x.Month == _month && x.Year == _year);
+            }
    
             return query.ToList();
         }

@@ -61,43 +61,106 @@ namespace Mess_Management_System.Services
                             personTotalMeal = a.TotalMeal,
                             personTotalBazar = b.Bazar,
                             GassBill = mb.GassBill / member.Count,
-                            BuaBill = mb.BuaBill / member.Count,
+
+                            bb = mb.BuaBill / 2,
+
+                            BuaBill = (mb.BuaBill / 2) / (member.Count - 1),
+
                             ElectricityBill = mb.ElectricityBill / member.Count,
                             HouseRent = mb.HouseRent / member.Count,
                             DirtCost = mb.DirtCost / member.Count,
                             WaterBill = mb.WaterBill / member.Count,
-                            InternetBill = mb.InternetBill / member.Count,
+
+                            ib = mb.InternetBill - 400,
+
+                            InternetBill = (mb.InternetBill - 100) / (member.Count - 1),
+
                             foodCost = (totalBazars / totameal) * a.TotalMeal,
                         }).ToList();
 
             foreach(var item in data)
             {
-                _dbContext.MonthlyBazars.Add(new MonthlyBazar
+                if (item.MemberId == 1)
                 {
-                    MemberId = item.MemberId,
-                    Year = vm.Year,
-                    Month = vm.Month,
-                    GassBill = Math.Round(item.GassBill, 2),
-                    BuaBill = Math.Round(item.BuaBill, 2),
-                    ElectricityBill = Math.Round(item.ElectricityBill, 2),
-                    HouseRent = Math.Round(item.HouseRent, 2),
-                    DirtCost = Math.Round(item.DirtCost, 2),
-                    WaterBill = Math.Round(item.WaterBill, 2),
-                    InternetBill = Math.Round(item.InternetBill, 2),
-                    TotalBazarCost = Math.Round(item.personTotalBazar, 2),
-                    TotalMeal = item.personTotalMeal,
-                    FoodCost = Math.Round(item.foodCost, 2),
-                    PersonalLoan = 0,
-                    PerviousDue = 0,
-                    TotalCost = Math.Round((item.GassBill + item.BuaBill + item.ElectricityBill + item.HouseRent + item.DirtCost + item.WaterBill + item.InternetBill
-                    + item.foodCost), 2),
-                    TotalPayableCost = Math.Round((item.GassBill + item.BuaBill + item.ElectricityBill + item.HouseRent + item.DirtCost + item.WaterBill + item.InternetBill
-                    + item.foodCost) - item.personTotalBazar, 2),
-                });
+                    _dbContext.MonthlyBazars.Add(new MonthlyBazar
+                    {
+                        MemberId = item.MemberId,
+                        Year = vm.Year,
+                        Month = vm.Month,
+                        GassBill = Math.Round(item.GassBill, 2),
+                        BuaBill = Math.Round(item.BuaBill, 2),
+                        ElectricityBill = Math.Round(item.ElectricityBill, 2),
+                        HouseRent = Math.Round(item.HouseRent, 2),
+                        DirtCost = Math.Round(item.DirtCost, 2),
+                        WaterBill = Math.Round(item.WaterBill, 2),
+                        InternetBill = Math.Round(item.InternetBill, 2),
+                        TotalBazarCost = Math.Round(item.personTotalBazar, 2),
+                        TotalMeal = item.personTotalMeal,
+                        FoodCost = Math.Round(item.foodCost, 2),
+                        PersonalLoan = 0,
+                        PerviousDue = 0,
+                        TotalCost = Math.Round((item.GassBill + item.BuaBill + item.ElectricityBill + item.HouseRent + item.DirtCost + item.WaterBill + item.InternetBill
+                        + item.foodCost), 2),
+                        TotalPayableCost = Math.Round((item.GassBill + item.BuaBill + item.ElectricityBill + item.HouseRent + item.DirtCost + item.WaterBill + item.InternetBill
+                        + item.foodCost) - item.personTotalBazar, 2),
+                    });
+                }
+                if (item.MemberId == 2)
+                {
+                    _dbContext.MonthlyBazars.Add(new MonthlyBazar
+                    {
+                        MemberId = item.MemberId,
+                        Year = vm.Year,
+                        Month = vm.Month,
+                        GassBill = Math.Round(item.GassBill, 2),
+                        BuaBill = item.bb,
+                        ElectricityBill = Math.Round(item.ElectricityBill, 2),
+                        HouseRent = Math.Round(item.HouseRent, 2),
+                        DirtCost = Math.Round(item.DirtCost, 2),
+                        WaterBill = Math.Round(item.WaterBill, 2),
+                        InternetBill = Math.Round(item.InternetBill, 2),
+                        TotalBazarCost = Math.Round(item.personTotalBazar, 2),
+                        TotalMeal = item.personTotalMeal,
+                        FoodCost = Math.Round(item.foodCost, 2),
+                        PersonalLoan = 0,
+                        PerviousDue = 0,
+                        TotalCost = Math.Round((item.GassBill + item.BuaBill + item.ElectricityBill + item.HouseRent + item.DirtCost + item.WaterBill + item.InternetBill
+                        + item.foodCost), 2),
+                        TotalPayableCost = Math.Round((item.GassBill + item.bb + item.ElectricityBill + item.HouseRent + item.DirtCost + item.WaterBill + item.InternetBill
+                        + item.foodCost) - item.personTotalBazar, 2),
+                    });
+                }
+                if (item.MemberId == 3)
+                {
+                    _dbContext.MonthlyBazars.Add(new MonthlyBazar
+                    {
+                        MemberId = item.MemberId,
+                        Year = vm.Year,
+                        Month = vm.Month,
+                        GassBill = Math.Round(item.GassBill, 2),
+                        BuaBill = Math.Round(item.BuaBill, 2),
+                        ElectricityBill = Math.Round(item.ElectricityBill, 2),
+                        HouseRent = Math.Round(item.HouseRent, 2),
+                        DirtCost = Math.Round(item.DirtCost, 2),
+                        WaterBill = Math.Round(item.WaterBill, 2),
+                        InternetBill = item.ib,
+                        TotalBazarCost = Math.Round(item.personTotalBazar, 2),
+                        TotalMeal = item.personTotalMeal,
+                        FoodCost = Math.Round(item.foodCost, 2),
+                        PersonalLoan = 0,
+                        PerviousDue = 0,
+                        TotalCost = Math.Round((item.GassBill + item.BuaBill + item.ElectricityBill + item.HouseRent + item.DirtCost + item.WaterBill + item.InternetBill
+                        + item.foodCost), 2),
+                        TotalPayableCost = Math.Round((item.GassBill + item.BuaBill + item.ElectricityBill + item.HouseRent + item.DirtCost + item.WaterBill + item.ib
+                        + item.foodCost) - item.personTotalBazar, 2),
+                    });
+                }
+                
             }
             _dbContext.SaveChanges();
         }
-        public List<MonthlyBazarViewModel> GetAll()
+
+        public List<MonthlyBazarViewModel> GetAll(string? searchString, int? _month, int? _year)
         {
             var query = (from b in _dbContext.MonthlyBazars
                          join m in _dbContext.Members on b.MemberId equals m.MemberId
@@ -121,6 +184,16 @@ namespace Mess_Management_System.Services
                              PersonalLoan = b.PersonalLoan,
                              PerviousDue = b.PerviousDue,
                          }).AsQueryable();
+
+            if(searchString != null)
+            {
+                query = query.Where(x => x.Name.Contains(searchString));
+            }
+
+            if(_month != null && _year != null)
+            {
+                query = query.Where(x => x.Month == _month && x.Year == _year);
+            }
 
             return query.ToList();
         }

@@ -13,8 +13,8 @@
             <form asp-action="Index" method="get">
                 <div class="d-flex form-actions no-color">
                     <div class="me-2">
-                                <input type="month" name="MonthYear" class="btn btn-outline-secondary btn-sm" />
-                            </div>
+                        <input type="month" name="MonthYear" class="btn btn-outline-secondary btn-sm" />
+                    </div>
                     <div class ="d-flex me-3">
                         <div class="ms-2">
                             <input type="submit" value="Search" class="btn btn-dark btn-sm" />
@@ -32,7 +32,7 @@
 
     <table class="table table-borderd table-striped shadow-sm">
         <thead>
-            <tr class="small text-center">
+            <tr class="small text-center bg-info text-light">
                 <th>
                     ID
                 </th>
@@ -97,8 +97,50 @@
                     <td width="10%">
                         @item.WaterBill
                     </td>
-                     <td width="10%">
-                        @item.Month
+                    <td width="10%">
+                        @switch (@item.Month)
+                        {
+                            case 1:
+                                <div>Januray</div>
+                                break;
+                            case 2:
+                                <div>February</div>
+                                break;
+                            case 3:
+                                <div>March</div>
+                                break;
+                            case 4:
+                                <div>April</div>
+                                break;
+                            case 5:
+                                <div>May</div>
+                                break;
+                            case 6:
+                                <div>June</div>
+                                break;
+                            case 7:
+                                <div>July</div>
+                                break;
+                            case 8:
+                                <div>August</div>
+                                break;
+                            case 9:
+                                <div>September</div>
+                                break;
+                            case 10:
+                                <div>October</div>
+                                break;
+                            case 11:
+                                <div>November</div>
+                                break;
+                            case 12:
+                                <div>December</div>
+                                break;
+
+                            default:
+                                <div>Wrong</div>
+                                break;
+                        }
                     </td>
                     <td width="10%">
                         @item.Year

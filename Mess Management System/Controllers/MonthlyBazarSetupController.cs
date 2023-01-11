@@ -12,9 +12,11 @@ namespace Mess_Management_System.Controllers
         {
             _monthlyBazarSetupService = monthlyBazarSetupService;
         }
-        public IActionResult Index()
+        public IActionResult Index(DateTime? monthYear)
         {
-            var query = _monthlyBazarSetupService.GetAll();
+            int? _month = monthYear == null ? null : monthYear.Value.Month;
+            int? _year = monthYear == null ? null : monthYear.Value.Year;
+            var query = _monthlyBazarSetupService.GetAll(_month, _year);
             
             return View(query);
         }

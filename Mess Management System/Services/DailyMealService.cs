@@ -43,6 +43,7 @@ public class DailyMealService
         model.Breakfast = viewModel.Breakfast;
         model.Lunch = viewModel.Lunch;
         model.Dinner = viewModel.Dinner;
+        model.Date = viewModel.Date;
 
         _dbContext.DailyMeals.Update(model);
         _dbContext.SaveChanges();
