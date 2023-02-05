@@ -33,6 +33,7 @@ namespace Mess_Management_System.Controllers
             if (ModelState.IsValid)
             {
                 _monthlyBazarSetupService.Create(viewModel);
+                TempData["allertMessage"] = "Monthly staff added successfully !";
                 return RedirectToAction("Index");
             }
             return View(viewModel);
@@ -62,6 +63,7 @@ namespace Mess_Management_System.Controllers
             if (ModelState.IsValid)
             {
                 _monthlyBazarSetupService.Update(viewModel);
+                TempData["allertMessage"] = "Monthly staff updated successfully !";
                 return RedirectToAction("Index");
             }
             return View(viewModel);

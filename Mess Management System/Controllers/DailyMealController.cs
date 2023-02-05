@@ -40,6 +40,7 @@ namespace Mess_Management_System.Controllers
             if (ModelState.IsValid)
             {
                 _dailyMealService.Create(viewModel);
+                TempData["allertMessage"] = "Meal added successfully !";
                 return RedirectToAction("Index");
             }
             return View(viewModel);
@@ -70,6 +71,7 @@ namespace Mess_Management_System.Controllers
             if(ModelState.IsValid)
             {
                 _dailyMealService.Update(viewModel);
+                TempData["allertMessage"] = "Meal updated successfully !";
                 return RedirectToAction("Index");
             }
             return View(viewModel) ;

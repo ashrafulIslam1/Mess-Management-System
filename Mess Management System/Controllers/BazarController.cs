@@ -40,6 +40,7 @@ namespace Mess_Management_System.Controllers
             if (ModelState.IsValid)
             {
                 _bazarService.Create(viewModel);
+                TempData["allertMessage"] = "Bazar created successfully !";
                 return RedirectToAction("Index");
             }
             return View(viewModel);
@@ -69,6 +70,7 @@ namespace Mess_Management_System.Controllers
             if (ModelState.IsValid)
             {
                 _bazarService.Update(viewModel);
+                TempData["allertMessage"] = "Bazar updated successfully !";
                 return RedirectToAction("Index");
             }
             return View(viewModel);

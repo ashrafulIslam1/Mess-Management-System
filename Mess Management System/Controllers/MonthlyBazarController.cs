@@ -39,7 +39,7 @@ namespace Mess_Management_System.Controllers
             if (ModelState.IsValid)
             {
                 _monthlyBazarService.Generate(vm);
-
+                TempData["allertMessage"] = "Monthly bill generated successfully !";
                 return RedirectToAction("Index");
             }
             return View(vm);

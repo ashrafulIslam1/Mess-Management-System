@@ -41,6 +41,13 @@
                     </a>
                 </div>
         </div>
+        @if (TempData["allertMessage"] != null)
+        {
+            <dvi class="alert alert-success h-25 w-35">
+                <strong>Success !</strong> @TempData["allertMessage"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </dvi>
+        }
 
     </div>
 

@@ -32,6 +32,7 @@ namespace Mess_Management_System.Controllers
             if(ModelState.IsValid)
             {
                 _memberListService.Create(viewModel);
+                TempData["allertMessage"] = "Member created successfully !";
                 return RedirectToAction("Index");
             }
             return View(viewModel);
@@ -60,6 +61,7 @@ namespace Mess_Management_System.Controllers
             if(ModelState.IsValid)
             {
                 _memberListService.Update(viewModel);
+                TempData["allertMessage"] = "Member updated successfully !";
                 return RedirectToAction("Index");
             }
             return View(viewModel);
@@ -89,6 +91,7 @@ namespace Mess_Management_System.Controllers
                 return NotFound();
             }
             _memberListService.Delete((int)id);
+            TempData["allertMessage"] = "Member deleted successfully !";
             return RedirectToAction("Index");
         }
     }
